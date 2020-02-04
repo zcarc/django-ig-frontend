@@ -1,0 +1,15 @@
+
+02. Header
+
+    - body 태그는 안건들이는게 좋다.
+    - section 태그는 시맨틱 태그
+    - position: absolute;
+       x축, y축 각각 하나씩 위치 설정해줘야한다.
+       (ex:
+            position: absolute;
+            left: 0;
+            top: 0;
+       )
+    - #header의 높이값은 header에게 직접 주는게 아니라 자식들한테 주는 것이다.
+    - spritecow.com 에서 백그라운드 이미지에서 원하는 부분만 선택하면 css 를 생성해준다.
+
