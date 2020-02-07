@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #3897f0;
+        }
+
+        .box.on {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        const b = document.querySelector('.box');
+        console.log(b);
+        b.addEventListener('click', () => {
+            b.style.backgroundColor = 'red';
+        })
+    </script>
+</body>
+</html>
