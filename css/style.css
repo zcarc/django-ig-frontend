@@ -126,13 +126,22 @@ body {
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-#header .inner{
+#header.on {
+    position: fixed;
+}
+
+#header .inner {
     width: 975px;
     height: 77px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 1s;
+}
+
+#header.on .inner {
+    height: 52px;
 }
 
 #header .inner .logo > a {
@@ -152,6 +161,7 @@ body {
     position: absolute;
     right: -15px;
     top: -4px;
+    transition: all .5s;
 }
 
 #header .inner .logo div {
@@ -160,6 +170,15 @@ body {
 
 #header .inner .logo div:nth-child(2) {
     transform: translateY(2px);
+    transition: all .5s;
+}
+
+#header.on .inner .logo .sprite_insta_icon:after {
+    opacity: 0;
+}
+
+#header.on .inner .logo div:nth-child(2) {
+    opacity: 0;
 }
 
 #header .search_box {
@@ -359,6 +378,12 @@ transform: translateX(-100px);
     top: 0;
 }
 
+/*fixed는 브라우저를 기준으로 위치를 잡게 됩니다.*/
+.side_box.on {
+    position: fixed;
+    top: 80px;
+}
+
 .side_box .profile_thumb {
     width: 50px;
     height: 50px;
@@ -438,6 +463,7 @@ transform: translateX(-100px);
 }
 
 .hidden_menu {
+    display: none;
     width: 600px;
 
     /*background: #3897f0;*/
@@ -491,6 +517,7 @@ transform: translateX(-100px);
 
     /* 백분율: 일정값/전체값*100 */
     /* 975/1000*100 = 97.5 */
+    /* 1001px 이상이 된다면 이 부분은 무시되고 width: 975px이 된다. */
     #header .inner{
         width: 97.5%;
     }
@@ -513,11 +540,19 @@ transform: translateX(-100px);
         display: none;
     }
 
+    .hidden_menu {
+        display: block;
+    }
+
 }
 
 @media screen and (max-width: 650px) {
 
     #header .search_box {
         display: none;
+    }
+
+    .hidden_menu {
+        width: 95%;
     }
 }
