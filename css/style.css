@@ -69,6 +69,8 @@
     width: 19px;
     height: 24px;
 }
+
+/* 아래 부분 새로 추가 */
 .sprite_bookmark_outline.on {
     background: url('../imgs/background01.png') no-repeat -159px -286px;
     width: 19px;
@@ -306,7 +308,7 @@ transform: translateX(-100px);
     cursor: pointer;
 }
 
-.heart_btn.on .sprite_heart_icon_outline {
+.sprite_heart_icon_outline.on {
     background: url('../imgs/background01.png') no-repeat -26px -261px;
 }
 
