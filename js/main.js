@@ -31,6 +31,21 @@ function delegationFunc(e) {
     if(element.matches('[data-name="heartbeat"]')) {
         console.log('하트!');
 
+        $.ajax({
+           type: 'POST',
+            url: 'data/like.json',
+            data: 37,
+            dataType: 'json', // response 데이터 타입
+            success: function(response) {
+               let likeCount = document.querySelector('#like-count-37');
+               likeCount.innerHTML = `좋아요 ${response.like_count}개`;
+            },
+            error: function (request, status, error) {
+                alert('로그인이 필요합니다.');
+                window.location.replace('https://www.naver.com');
+            }
+        });
+
     } else if(element.matches('[data-name="bookmark"]')) {
         console.log('북마크!');
 
