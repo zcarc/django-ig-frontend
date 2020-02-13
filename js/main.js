@@ -31,10 +31,12 @@ function delegationFunc(e) {
     if(element.matches('[data-name="heartbeat"]')) {
         console.log('하트!');
 
+        let pk = element.getAttribute('name');
+
         $.ajax({
            type: 'POST',
             url: 'data/like.json',
-            data: 37,
+            data: { pk },
             dataType: 'json', // response 데이터 타입
             success: function(response) {
                let likeCount = document.querySelector('#like-count-37');
@@ -48,6 +50,23 @@ function delegationFunc(e) {
 
     } else if(element.matches('[data-name="bookmark"]')) {
         console.log('북마크!');
+
+        let pk = element.getAttribute('name');
+
+        $.ajax({
+            type: 'POST',
+            url: 'data/bookmark.json',
+            data: { pk },
+            dataType: 'json', // response 데이터 타입
+            success: function(response) {
+                let bookmarkCount = document.querySelector('#bookmark-count-37');
+                bookmarkCount.innerHTML = `북마크 ${response.bookmark_count}개`;
+            },
+            error: function (request, status, error) {
+                alert('로그인이 필요합니다.');
+                window.location.replace('https://www.naver.com');
+            }
+        });
 
     } else if(element.matches('[data-name="share"]')) {
         console.log('공유!');
