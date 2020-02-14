@@ -96,8 +96,26 @@ function delegationFunc(e) {
         });
 
         document.querySelector('#add-comment-post37 > input[type=text]').value = '';
+    } else if(element.matches('[data-name="comment_delete"]')) {
 
-    } else if(element.matches('[data-name="comment-delete"]')) {
+        $.ajax({
+            type: 'POST',
+            url: 'data/delete.json',
+            data: {
+                'pk': 37,
+            },
+            dataType: 'json', // response 데이터 타입
+            success: function(response) {
+
+                if(response.status) {
+                    let comment = document.querySelector('.comment-detail');
+                    comment.remove();
+                }
+            },
+            error: function (request, status, error) {
+                alert('문제가 발생했습니다.');
+            }
+        });
 
     } else if(element.matches('[data-name="follow"]')) {
 
