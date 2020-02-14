@@ -119,6 +119,28 @@ function delegationFunc(e) {
 
     } else if(element.matches('[data-name="follow"]')) {
 
+        $.ajax({
+            type: 'POST',
+            url: 'data/follow.json',
+            data: {
+                'pk': 37,
+            },
+            dataType: 'json', // response 데이터 타입
+            success: function(response) {
+
+                console.log(`response: ${JSON.stringify(response)}`);
+
+                if(response.status) {
+                    document.querySelector('input.follow').value = '팔로잉';
+
+                } else {
+                    document.querySelector('input.follow').value = '팔로워';
+                }
+            },
+            error: function (request, status, error) {
+                alert('문제가 발생했습니다.');
+            }
+        });
     }
 
     element.classList.toggle('on');
