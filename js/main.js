@@ -68,11 +68,39 @@ function delegationFunc(e) {
             }
         });
 
-    } else if(element.matches('[data-name="share"]')) {
-        console.log('공유!');
+    } else if(element.matches('[data-name="comment"]')) {
 
-    } else if(element.matches('[data-name="more"]')) {
-        console.log('더보기!');
+        let content = document.querySelector('#add-comment-post37 > input[type=text]').value;
+        console.log(content);
+
+        if(content.length > 140) {
+            alert(`댓글을 최대 140자까지 입력 가능합니다. 현재 글자수: ${content.length}`);
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: './comment.html',
+            data: {
+                'pk': 37,
+                'content': content,
+            },
+            dataType: 'html', // response 데이터 타입
+            success: function(data) {
+                // 태그(element)를 이어서 붙입니다.
+                document.querySelector('#comment-list-ajax-post37').insertAdjacentHTML('afterbegin', data);
+            },
+            error: function (request, status, error) {
+                alert('문제가 발생했습니다.');
+            }
+        });
+
+        document.querySelector('#add-comment-post37 > input[type=text]').value = '';
+
+    } else if(element.matches('[data-name="comment-delete"]')) {
+
+    } else if(element.matches('[data-name="follow"]')) {
+
     }
 
     element.classList.toggle('on');

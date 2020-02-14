@@ -326,7 +326,13 @@ transform: translateX(-100px);
 
 .contents .comment_container .comment {
     display: flex;
+    flex-direction: column;
     font-size: 14px;
+}
+
+.contents .comment_container .comment-detail {
+    display: flex;
+    align-items: center;
 }
 
 .contents .comment_container .comment .nick_name {
@@ -367,7 +373,7 @@ transform: translateX(-100px);
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    pointer-events: none;
+    /*pointer-events: none;*/
     opacity: 0.6;
 }
 
