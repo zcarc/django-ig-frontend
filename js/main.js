@@ -186,7 +186,20 @@ function resizeFunc() {
 }
 
 function scrollFunc() {
-    console.log(pageYOffset);
+
+    let scrollHeight = pageYOffset + window.innerHeight;
+    let documentHeight = document.body.scrollHeight;
+
+    // 아래 두개의 값이 맞아 떨어져야 ajax 통신이 일어나야합니다.
+    // 하지만 pageYOffset 는 스크롤이 화면 위의 끝부분에서 부터 시작하기 때문에
+    // 그 아래 끝부분까지 더해야하는데 이때 window.innerHeight를 더해주게 되면
+    // document.body.scrollHeight 값 까지 더해지게 됩니다.
+    console.log('pageYOffset: ', pageYOffset);
+    console.log('window.innerHeight: ', window.innerHeight);
+    console.log('scrollHeight: ', scrollHeight);
+    console.log('document.body.scrollHeight: ', documentHeight);
+    console.log('\n');
+
 
     if(pageYOffset >= 10) {
 
@@ -207,6 +220,46 @@ function scrollFunc() {
         }
 
     }
+
+    if(scrollHeight + 300 >= documentHeight) {
+
+        // ajax 통신횟수, 남아있는 페이지 수의 확인,
+        // 어느지점에 도달했을 때 스크롤을 막기 위해서 생성해줍니다.
+       let page = document.querySelector('#page').value;
+
+        if(parseInt(page) > 5) {
+            return;
+        }
+
+        document.querySelector('#page').value = parseInt(page) + 1;
+
+        callMorePostAjax(page);
+
+
+    }
+
+}
+
+function callMorePostAjax(page) {
+
+    $.ajax({
+        type: 'POST',
+        url: './post.html',
+        data: {
+            'page': page,
+        },
+        dataType: 'html',
+        success: addMorePostAjax,
+        error: function (request, status, error) {
+            alert('문제가 발생했습니다.');
+        }
+
+    });
+
+}
+
+function addMorePostAjax(data) {
+    delegation.insertAdjacentHTML('beforeend', data);
 }
 
 setTimeout(function () {
